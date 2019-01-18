@@ -1,8 +1,4 @@
-# HorizonLabInstallGuide
-A guide to install some stuffs and how to play with pipenv and others.
-
-
-# Install Guide
+# HorizonLab Installation Guide
 
 This document is for isntalling variable stuffs for CV and ML, etc. on research use. The machine I tested on is a Nvidia GPU 2080Ti. There are several tools I have tested on this GPU machine, I list them below:
 - Caffe
