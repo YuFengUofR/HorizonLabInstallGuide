@@ -30,8 +30,6 @@ To uninstall everything, use the command below to remove the directory
 $ rm -rf anaconda2
 ```
 
-# Virtual Environment
-
 ## Install Pipenv
 Pipenv is a veritual environment to help with python package control for your own project. To install the pipenv, you can first enter the command below in your own user space:
 ```
@@ -62,14 +60,48 @@ $ virtualenv my_dir
 This will create a virtual environment for current directory. To activate the current virtual environment,
 ```
 $ source my_dir/bin/activate
-(my_dir) [xxxx@xxxx my_dir]$  # Now, you are in virtual environment.
+(my_dir) $  # Now, you are in virtual environment.
 ```
 To deactivate the virtual environment, simply type:
 ```
-(my_dir) [xxxx@xxxx my_dir]$$ deactivate
+(my_dir) $ deactivate
 $   # Now, you are out.
 ```
 Within the virtual environment, you can install anything you want to by simply use 
 ```
 $ pip install <YOUR_PACKAGE>
 ```
+
+### One case of using *virtualenv*.
+In this case, I use a *virtualenv* to run a stereo vision network using pytorch.
+
+First, clone a Stereo Vision DNN network repository.
+```
+$ git clone https://github.com/JiaRenChang/PSMNet.git
+```
+Before entering into *virtualenv*, first, check the CUDA version in order to install PyTorch. To check the CUDA verison:
+```
+$ /usr/local/cuda/bin/nvcc --version
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2017 NVIDIA Corporation
+Built on Fri_Sep__1_21:08:03_CDT_2017
+Cuda compilation tools, release 9.0, V9.0.176
+```
+In our case, the CUDA version is 9.0. And then, enter *virtualenv*
+```
+$ source my_dir/bin/activate
+```
+Then, within the virtual environment, we install pytorch and other dependancies.
+```
+$ pip install torch torchvision scikit-image
+```
+Now, you can run the actual DNN network:
+```
+$ python submission.py --maxdisp 192 --model stackhourglass --KITTI 2015 \
+    --datapath ../KITTI_dataset/ --loadmodel pretrained_model_KITTI2015.tar
+```
+That's it. Don't forget to deactivate when you want to exit the virtual environment.
+
+
+
+
