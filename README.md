@@ -1,7 +1,8 @@
 # Install Guide
 
 This document is for isntalling variable stuffs for CV and ML, etc. on research use. The machine I tested on is a Nvidia GPU 2080Ti. There are several tools I have tested on this GPU machine, I list them below:
-- Caffe
+- Caffe with Anaconda
+- Vitual Environment, such as Pipenv and virtualenv
 
 # Caffe
 Bofore installing caffe, we need to install Anaconda as prerequsite.
@@ -28,6 +29,8 @@ To uninstall everything, use the command below to remove the directory
 ```
 $ rm -rf anaconda2
 ```
+
+# Virtual Environment
 
 ## Install Pipenv
 Pipenv is a veritual environment to help with python package control for your own project. To install the pipenv, you can first enter the command below in your own user space:
