@@ -87,4 +87,39 @@ Pipenv is a veritual environment to help with python package control for your ow
 ```
 $ pip install --user pipenv
 ```
+After installed *pipenv* successfully, add the user base path into `PATH` in your own `~/.bashrc` file. To check the path using Python:
+```
+$ python -m site --user-base 
+/[SOMEPATH]/.local
+```
+Then, add the path into your own `~/.bashrc` by adding this line below:
+```
+export PATH="$PATH:/[SOMEPATH]/.local/bin"
+```
+and then, enter `source ~/.bashrc` in your terminal.
+
+To use pipenv is simple, simply install the package in your own directory.
+```
+$ pipenv install <YOUR_PACKAGE>
+```
+## How to use virtualenv
+
+*virtualenv* can create a isolated virtual environment in current directory. For instance,
+```
+$ virtualenv my_dir
+```
+This will create a virtual environment for current directory. To activate the current virtual environment,
+```
+$ source my_dir/bin/activate
+(my_dir) [xxxx@xxxx my_dir]$  # Now, you are in virtual environment.
+```
+To deactivate the virtual environment, simply type:
+```
+(my_dir) [xxxx@xxxx my_dir]$$ deactivate
+$   # Now, you are out.
+```
+Within the virtual environment, you can install anything you want to by simply use 
+```
+$ pip install <YOUR_PACKAGE>
+```
 
