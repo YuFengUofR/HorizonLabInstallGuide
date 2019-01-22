@@ -3,6 +3,7 @@
 This document is for isntalling variable stuffs for CV and ML, etc. on research use. The machine I tested on is a Nvidia GPU 2080Ti. There are several tools I have tested on this GPU machine, I list them below:
 - Caffe with Anaconda
 - Vitual Environment, such as Pipenv and virtualenv
+- Compile PyTorch from source on TX2
 
 # Caffe
 Bofore installing caffe, we need to install Anaconda as prerequsite.
@@ -72,7 +73,7 @@ Within the virtual environment, you can install anything you want to by simply u
 $ pip install <YOUR_PACKAGE>
 ```
 
-### One case of using *virtualenv*.
+## Run PyTorch with *virtualenv*.
 In this case, I use a *virtualenv* to run a stereo vision network using pytorch.
 
 First, clone a Stereo Vision DNN network repository.
@@ -104,4 +105,48 @@ That's it. Don't forget to deactivate when you want to exit the virtual environm
 
 
 
+# Run Tensorflow with *virtualenv*
+First, let's clone a repository of stereo vision DNN using tensorflow, in this case, we use GC-Net (Unofficial version).
+```
+$ git clone https://github.com/Jiankai-Sun/GC-Net.git
+```
+Enter the *virtualenv* and install related dependancies.
+```
+$ cd GC-Net
+$ virtualenv .
+$ source bin/activate       # now, we enter the virtual environment
+$ pip install tensorflow scipy pillow       # all dependencies, maybe some more. 
+$ CUDA_VISIBLE_DEVICES=n python main.py --gpu n --phase train --max_steps 50000 \ --learning_rate 0.00005 --output_dir $HOME/Applications/GC-Net/log/ --pretrain true
+.... # now, you get a DNN running on tensorflow
+$ deactivate
+```
 
+
+# Install PyTorch on Jetson TX2
+In case of fail to install PyTorch via pip, there is the method to install PyTorch from source.
+Frist, clone PyTorch repo.
+```
+$ cd ~
+$ git clone https://github.com/pytorch/pytorch.git
+```
+Enter the directory and install prerequsites:
+```
+$ cd ./pytorch
+$ git submodule update --init
+```
+Sometime you need to install or update the dependancies for PyTorch, then, enter below commands:
+```
+$ sudo pip install -U setuptools
+$ sudo pip install -r requirement.txt
+```
+Sometimes, you don't have to, because those dependencies are already installed before.
+After finished installing all the prerequisites, in case of CUDA 9.0 installed in your TX2, one solution to aviod an allocation error when running PyTorch is to change two files in the source code.
+First, change the `CUDA_NUM_THREADS` in both files: `aten/src/ATen/cuda/detail/KernelUtils.h` and `aten/src/THCUNN/common.h`. Change the `CUDA_NUM_THREADS` to 
+```
+constexpr int CUDA_NUM_THREADS = 512;
+```
+Then, compile the source code using the command below:
+```
+$ sudo python setup.py install
+```
+If you see the compilation succeed, you should be able to run PyTorch on your TX2.
