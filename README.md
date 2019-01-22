@@ -33,7 +33,10 @@ $ rm -rf anaconda2
 
 [UNFINISHED] Because we can't sudo access on GPU machine, so currently, I don't know if there is a way to install caffe in user space.
 
-## Install Pipenv
+## Install Caffe on TX2
+There is a reference link to a [blog](https://jkjung-avt.github.io/caffe-on-tx2/) that shows how to install Caffe on TX2.
+
+# Install Pipenv
 Pipenv is a veritual environment to help with python package control for your own project. To install the pipenv, you can first enter the command below in your own user space:
 ```
 $ pip install --user pipenv
