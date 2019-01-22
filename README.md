@@ -5,7 +5,7 @@ This document is for isntalling variable stuffs for CV and ML, etc. on research 
 - Vitual Environment, such as Pipenv and virtualenv
 - Compile PyTorch from source on TX2
 
-# Caffe
+# Caffe [UNFINISHED]
 Bofore installing caffe, we need to install Anaconda as prerequsite.
 ## Install Anaconda
 For caffe, we need to first install [*Anaconda*](https://conda.io/docs/user-guide/install/index.html). First download the installer using the command below:
@@ -30,6 +30,8 @@ To uninstall everything, use the command below to remove the directory
 ```
 $ rm -rf anaconda2
 ```
+
+[UNFINISHED] Because we can't sudo access on GPU machine, so currently, I don't know if there is a way to install caffe in user space.
 
 ## Install Pipenv
 Pipenv is a veritual environment to help with python package control for your own project. To install the pipenv, you can first enter the command below in your own user space:
