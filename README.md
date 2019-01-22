@@ -73,7 +73,7 @@ Within the virtual environment, you can install anything you want to by simply u
 $ pip install <YOUR_PACKAGE>
 ```
 
-## Run PyTorch with *virtualenv*.
+## Run PyTorch with *virtualenv* on GPU machine.
 In this case, I use a *virtualenv* to run a stereo vision network using pytorch.
 
 First, clone a Stereo Vision DNN network repository.
